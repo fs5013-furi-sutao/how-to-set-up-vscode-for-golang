@@ -37,19 +37,19 @@ go env -w GOPATH=C:\Users\<ユーザ名>\go
 
 [golang.Go](https://marketplace.visualstudio.com/items?itemName=golang.Go) 拡張機能を VSCode にインストールする
 
-![golang.Go 拡張機能](./images/01.go-extention.png)
+![golang.Go 拡張機能](./screencapture/01.go-extention.png)
 
-## GO: Install/Update Tools
+## GO: Install/Update Tools コマンド
 
 VSCode に必要な Go のパッケージをまとめてインストールしていく
 
 コマンドパレットを開き（ `Ctrl` + `Shift` + `p` ）、「GO: Install/Update Tools」 を選択する
 
-![](02.go-install-update-tools.png)
+![GO: Install/Update Tools コマンド](./screencapture/02.go-install-update-tools.png)
 
 表示されている 10 個のパッケージすべてにチェックを入れて「OK」ボタンを押す
 
-![](./03.selected-tools.png)
+![10 個のパッケージにチェック](./screencapture/03.selected-tools.png)
 
 インストールが成功すれば、OUTPUT コンソールに以下のログが表示される。
 
