@@ -1,6 +1,6 @@
-# VScode for Golang 
+# Go + VSCode(Windows 10) の開発環境（デバッグができるまで）
 
-How to setup Visual Studio Code for Go
+VSCode でデバッグができるように Go の開発環境を作っていく
 
 ## Scoop で Go をインストール
 
@@ -80,3 +80,31 @@ Installing golang.org/x/tools/gopls (C:\Users\N_hashimoto\go\bin\gopls.exe) SUCC
 
 All tools successfully installed. You are ready to Go :).
 ```
+
+## 動作確認用のコード
+
+go-demo ディレクトリを作成し、以下の内容の main.go ファイルを作成する
+
+``` golang
+package main
+
+import "fmt"
+
+func main() {
+	f := func(a []string) ([]string, string) {
+		return a[1:], a[0]
+	}
+	m := []string{
+		"one",
+		"two",
+		"three",
+	}
+	s := ""
+	fmt.Println(m)
+	for len(m) > 0 {
+		m, s = f(m)
+		fmt.Printf("%v -> %v \n", s, m)
+	}
+}
+```
+
