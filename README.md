@@ -54,8 +54,8 @@ VSCode に必要な Go のパッケージをまとめてインストールして
 インストールが成功すれば、OUTPUT コンソールに以下のログが表示される。
 
 ``` txt
-Tools environment: GOPATH=C:\Users\N_hashimoto\go
-Installing 10 tools at C:\Users\N_hashimoto\go\bin in module mode.
+Tools environment: GOPATH=C:\Users\<ユーザ名>\go
+Installing 10 tools at C:\Users\<ユーザ名>\go\bin in module mode.
   gopkgs
   go-outline
   gotests
@@ -67,16 +67,16 @@ Installing 10 tools at C:\Users\N_hashimoto\go\bin in module mode.
   golangci-lint
   gopls
 
-Installing github.com/uudashr/gopkgs/v2/cmd/gopkgs (C:\Users\N_hashimoto\go\bin\gopkgs.exe) SUCCEEDED
-Installing github.com/ramya-rao-a/go-outline (C:\Users\N_hashimoto\go\bin\go-outline.exe) SUCCEEDED
-Installing github.com/cweill/gotests/gotests (C:\Users\N_hashimoto\go\bin\gotests.exe) SUCCEEDED
-Installing github.com/fatih/gomodifytags (C:\Users\N_hashimoto\go\bin\gomodifytags.exe) SUCCEEDED
-Installing github.com/josharian/impl (C:\Users\N_hashimoto\go\bin\impl.exe) SUCCEEDED
-Installing github.com/haya14busa/goplay/cmd/goplay (C:\Users\N_hashimoto\go\bin\goplay.exe) SUCCEEDED
-Installing github.com/go-delve/delve/cmd/dlv (C:\Users\N_hashimoto\go\bin\dlv.exe) SUCCEEDED
-Installing github.com/go-delve/delve/cmd/dlv@master (C:\Users\N_hashimoto\go\bin\dlv-dap.exe) SUCCEEDED
-Installing github.com/golangci/golangci-lint/cmd/golangci-lint (C:\Users\N_hashimoto\go\bin\golangci-lint.exe) SUCCEEDED
-Installing golang.org/x/tools/gopls (C:\Users\N_hashimoto\go\bin\gopls.exe) SUCCEEDED
+Installing github.com/uudashr/gopkgs/v2/cmd/gopkgs (C:\Users\<ユーザ名>\go\bin\gopkgs.exe) SUCCEEDED
+Installing github.com/ramya-rao-a/go-outline (C:\Users\<ユーザ名>\go\bin\go-outline.exe) SUCCEEDED
+Installing github.com/cweill/gotests/gotests (C:\Users\<ユーザ名>\go\bin\gotests.exe) SUCCEEDED
+Installing github.com/fatih/gomodifytags (C:\Users\<ユーザ名>\go\bin\gomodifytags.exe) SUCCEEDED
+Installing github.com/josharian/impl (C:\Users\<ユーザ名>\go\bin\impl.exe) SUCCEEDED
+Installing github.com/haya14busa/goplay/cmd/goplay (C:\Users\<ユーザ名>\go\bin\goplay.exe) SUCCEEDED
+Installing github.com/go-delve/delve/cmd/dlv (C:\Users\<ユーザ名>\go\bin\dlv.exe) SUCCEEDED
+Installing github.com/go-delve/delve/cmd/dlv@master (C:\Users\<ユーザ名>\go\bin\dlv-dap.exe) SUCCEEDED
+Installing github.com/golangci/golangci-lint/cmd/golangci-lint (C:\Users\<ユーザ名>\go\bin\golangci-lint.exe) SUCCEEDED
+Installing golang.org/x/tools/gopls (C:\Users\<ユーザ名>\go\bin\gopls.exe) SUCCEEDED
 
 All tools successfully installed. You are ready to Go :).
 ```
@@ -119,3 +119,37 @@ F10 を押すと実行箇所が進むので、エディタ左側のデバッグ�
 ![変数が処理によって変化していく](./05.runing-debug.png)
 
 デバッグの動作確認は以上です
+
+## Go Modules の確認
+
+Go Modules が使えるようにしていく
+
+Go 環境変数に設定してある GO111MODULE の値を `go env GO111MODULE` コマンドで確認する
+
+``` console
+go env GO111MODULE
+off
+```
+
+上記のようになれば、`set GO111MODULE=off` となっているので、設定値を次のコマンドで削除する
+
+``` console
+go env -w GO111MODULE=
+```
+
+## go.mod ファイルの作成
+
+次のコマンドで go.mod ファイルを作成する
+
+``` console
+go mod init example.com/hoge/hello
+```
+
+作成された go.mod ファイルの中身は次のようになる
+
+``` golang
+module example.com/hoge/hello
+
+go 1.17
+```
+
