@@ -153,3 +153,68 @@ module example.com/hoge/hello
 go 1.17
 ```
 
+次に以下のような内容で hello.main を作成する
+
+`rsc.io/quote` は Go Modules の説明のために作られた説明用パッケージ
+
+``` golang
+package main
+
+import (
+	"fmt"
+
+	"rsc.io/quote"
+)
+
+func main() {
+	fmt.Println(quote.Opt())
+}
+```
+
+## go mod tidy
+
+次に依存関係の解決を行う
+
+現状、`rsc.io/quote` への依存関係が解決できていないため、VSCode 上では `rsc.io/quote` のインポート部分がコンパイルエラーになっている
+
+この依存関係を自動解決させるために次のコマンドを実行する
+
+
+``` console
+go mod tidy
+```
+
+実行すると `go.sum` ファイル作られ、ここに依存関係が書き込まれるためコンパイルエラーが解消される
+
+go.sum ファイルの内容は次のようになる
+
+``` golang
+golang.org/x/text v0.0.0-20170915032832-14c0d48ead0c h1:qgOY6WgZOaTkIIMiVjBQcw93ERBE4m30iBm00nkL0i8=
+golang.org/x/text v0.0.0-20170915032832-14c0d48ead0c/go.mod h1:NqM8EUOU14njkJ3fqMW+pc6Ldnwhi/IjpwHt7yyuwOQ=
+rsc.io/quote v1.5.2 h1:w5fcysjrx7yqtD/aO+QwRjYZOKnaM9Uh2b40tElTs3Y=
+rsc.io/quote v1.5.2/go.mod h1:LzX7hefJvL54yjefDEDHNONDjII0t9xZLPXsUe+TKr0=
+rsc.io/sampler v1.3.0 h1:7uVkIFmeBqHfdjD+gZwtXXI+RODJ2Wc4O7MPEh/QiW4=
+rsc.io/sampler v1.3.0/go.mod h1:T1hPZKmBbMNahiBKFy5HrXp6adAjACjK9JXDnKaTXpA=
+```
+
+## プログラムの実行
+
+``` console
+go run ./hello.go
+```
+
+```
+If a program is too slow, it must have a loop.
+```
+
+## ビルド
+
+hello.exe が作られる
+
+``` console
+go build
+```
+
+``` console
+./hello
+```
